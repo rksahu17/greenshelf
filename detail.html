@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Geenshelf</title>
+  <meta charset="utf-8">
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+ <script src='https://www.google.com/recaptcha/api.js'></script>
+ <script src='util.js'></script>
+  <link rel="shortcut icon" href="img/favicon.ico"/>
+  <link rel="stylesheet" href="theme/css/fontstyle.css">
+<script>
+
+$(function(){
+  var user = sessionStorage.getItem('userType');  
+   $('#rqs1').val(user);
+   if(user.match("seller") == "seller"){
+        $('#rqs2').val(sessionStorage.getItem('phy_selcart'));
+        $('#rqs3').val(sessionStorage.getItem('chem_selcart'));
+        $('#rqs4').val(sessionStorage.getItem('add_selcart'));
+    }
+   else if(user.match("buyer") == "buyer"){
+        $('#rqs2').val(sessionStorage.getItem('phy_buycart'));
+        $('#rqs3').val(sessionStorage.getItem('chem_buycart'));
+        $('#rqs4').val(sessionStorage.getItem('add_buycart'));
+        $('#rqs5').val(sessionStorage.getItem('choice1'));
+        $('#rqs6').val(sessionStorage.getItem('choice2'));
+        $('#rqs7').val(sessionStorage.getItem('choice3'));
+    
+    }
+});
+</script>
+</head>
+<body>
+
+  <div class="navbar navbar-default navbar-static-top" style="background:#ac7ee5">
+
+    <div class ="container" style="height:150px">    
+      <a href="index.html" class="navbar-brand">
+       <div><h1 style="color:white">GreenShelf!</h1></div>
+     </a>
+
+     <button class="navbar-toggle" data-toggle="collapse" data-target = ".navHeaderCollapse">
+      <span class="icon-bar" style="background:white;"></span>
+      <span class="icon-bar" style="background:white;"></span>
+      <span class="icon-bar" style="background:white;"></span>
+    </button>
+    <div class="collapse navbar-collapse navHeaderCollapse">
+      <ul class="nav navbar-nav navbar-right">
+
+        <li><a href="index.html" style="color:white">HOME</a></li>
+        <li><a href="advertiser.php" style="color:white">SELLER ADs</a></li>
+        <li><a href="about.html" style="color:white">ABOUT</a></li>
+            <li><a href="faq.html" style="color:white">FAQ</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="margin-left:25%; width:50%; color:#555;">
+  <h2>DETAILS</h2>
+  <form role="form" action="detailsentry.php" method="post">
+
+    <div class="form-group">
+      <label for="text">Name:</label>
+      <input type="text" name="name" class="form-control"  placeholder="Enter Name" required>
+    </div>
+    <div class="form-group">
+      <label for="text">Roll No.:</label><br>
+      <input  style="width:100%; height:35px;" type="text" name="rollno" pattern="[1][0-9]{7,}" placeholder="Enter University Roll No." required>
+    </div>
+    <div class="form-group">
+      <label for="text">Phone Number:</label>
+      <br><input class="form-control" style="width:55px; display: inline-block;" value="+91" disabled >&nbsp
+      <input style="width:90%; display:inline-block; height:35px;"  pattern="[789][0-9]{9}"  name="phoneno" placeholder="Enter Phone Number" required>
+    </div>
+   <div class="form-group">
+      <label for="text">Gender:</label><br>
+      <div class="radio">
+        <label><input type="radio" name="gender" value="1" checked="checked">Male</label>
+      </div>
+      <div class="radio">
+        <label><input type="radio" name="gender" value="0">Female</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="text">E-mail:</label>
+      <input type="text" name="email" class="form-control"  placeholder="Email" required>
+    </div>
+
+    <h4>Address</h4>
+    
+      <div class="form-group">
+        <label for="sel1">Select:</label>
+        <select class="form-control" id="sel1" name="hall">
+          <option>Day Scholar</option>
+          <option>Marichi Hall of Residence</option>
+          <option>Atri Hall of Residence</option>
+          <option>Kratu Hall of Residence</option>
+          <option>Arundhati Hall of Residence</option>
+          <option>Anuradha Hall of Residence</option>
+          <option>Vasistha Hall of Residence</option>
+          <option>Visakha Hall of Residence</option>
+          <option>Angira Hall of Residence</option>
+          <option>Pulastya Hall of Residence</option>
+          <option>Rohini Hall of Residence</option>
+          <option>Pulaha Hall of Residence</option>
+        </select>
+        <br>
+
+      </div>
+    
+
+
+
+    <div class="form-group">
+      <label for="text">Room No(optional):</label>
+      <input type="text" name="room" class="form-control" placeholder="Room No.(optional)">
+    </div>
+    <div class="form-group">
+      <label for="text">Additional Address(optional):</label>
+      <input id="adds" type="text" name="address" class="form-control" placeholder="Additional Address(optional):">
+    </div>
+    <div class="form-group">
+      <div style="margin-top:10px;">
+          <div class="g-recaptcha" data-sitekey="6LeNkCYTAAAAAMYBifEsmwH61CahsiMgSHJCiAtM"></div>
+    <div class="form-group">     
+        <input id="rqs1" type="hidden" name="q" value="yo" class="form-control"  required>
+    </div>
+    <div class="form-group">
+         <input id="rqs2" type="hidden" name="phycart" value="" class="form-control" >
+    </div>
+    <div class="form-group">
+      <input id="rqs3" type="hidden" name="chemcart" value="" class="form-control" >
+    </div> 
+    <div class="form-group">
+      <input id="rqs5" type="hidden" name="choice1" value="" class="form-control" >
+    </div>
+     <div class="form-group">
+      <input id="rqs6" type="hidden" name="choice2" value="" class="form-control" >
+    </div>
+     <div class="form-group">
+      <input id="rqs7" type="hidden" name="choice3" value="" class="form-control" >
+    </div>
+
+   <div class="form-group">      
+          <input id="rqs4" type="hidden" name="addcart" value="" class="form-control" >
+        <button type="submit" class="btn btn-success" >Confirm Order</button>
+      </div>
+ </form>
+ </div>
+
+<script>
+  alert("Fill Correct details to place your order Successfully");
+</script>
+
+</body>
+</html>
+    

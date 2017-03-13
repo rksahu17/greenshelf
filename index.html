@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv='cache-control' content='no-cache'>
+  <meta http-equiv='expires' content='0'>
+  <meta http-equiv='pragma' content='no-cache'>
+   <title>Greenshelf</title>  
+  <link rel="stylesheet" href="theme/css/homepage/normalize.css">
+  <link rel="stylesheet" href="theme/css/homepage/style.css"> 
+  <script src="theme/js/jquery-1.12.4.js"></script>
+  <script src="theme/js/homepage/prefixfree.min.js"></script>    
+  <link rel="shortcut icon" href="img/favicon.ico"/>  
+  <script src="util.js"></script>    
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>    
+
+    <script>
+    $(document).ready(function() {
+       sessionStorage.clear();
+       var sData = sendReqst("stockdetails");
+       sessionStorage.setItem("stock", sData);      
+    });
+
+    </script>
+  </head>
+
+<body>
+  <div class="btn-bg bg-6">
+    <div class="btn btn-6">
+      <h2>Hello!, Welcome to</h2>
+      <button onclick="toFaq()" style="text-transform: none;"><a>GreenShelf!</a></button>
+    </div>
+  </div>
+  <div class="btn-bg bg-1">
+    <div class="btn btn-1">
+      <h2></h2>
+      <a href="buychoice.html">
+      <button onclick="countUser()">Buy</button>
+      </a>
+      <a style="margin-left:10px;" href="sell.html">
+      	<button onclick="countUser()">Sell</button>
+      </a>
+    </div>
+  </div>
+  <script>
+    function countUser(){
+     sendReqst("countuser");
+    }
+
+   function toFaq() {
+     location.href='faq.html';
+   }
+  </script>
+</body>
+</html>
